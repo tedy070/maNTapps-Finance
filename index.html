@@ -236,6 +236,38 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:13
 .btn-auth-sec:hover{background:var(--bg2);color:var(--text);border-color:var(--border2)}
 .xlsx-note{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:10px 12px;font-size:12px;color:var(--text2);margin-top:12px;display:flex;align-items:flex-start;gap:8px}
 
+/* ── SINKRON KODE ── */
+.sync-tabs{display:flex;gap:4px;margin-bottom:18px;background:var(--bg2);border-radius:var(--r);padding:3px;}
+.sync-tab{flex:1;height:34px;border-radius:7px;border:none;background:none;color:var(--text2);font-family:var(--sans);font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;}
+.sync-tab.active{background:var(--goldDim);color:var(--gold);border:1px solid var(--gold);}
+.sync-tab:hover:not(.active){color:var(--text);}
+.sync-panel{display:none;}.sync-panel.active{display:block;}
+.sync-code-box{background:var(--bg);border:1px solid var(--border2);border-radius:var(--r);padding:14px;font-family:var(--mono);font-size:10.5px;color:var(--gold2);word-break:break-all;line-height:1.8;max-height:130px;overflow-y:auto;letter-spacing:.3px;margin-bottom:10px;user-select:all;cursor:text;}
+.sync-code-box::-webkit-scrollbar{width:3px;}.sync-code-box::-webkit-scrollbar-thumb{background:var(--border2);}
+.sync-info-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;color:var(--text2);}
+.sync-info-row:last-child{border:none;}
+.sync-info-val{font-family:var(--mono);color:var(--text);font-size:11px;}
+.sync-chip{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;background:var(--goldDim);color:var(--gold);border:1px solid #5a3e10;display:inline-block;margin:2px;}
+.sync-import-area{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--border2);border-radius:var(--r);color:var(--gold2);font-family:var(--mono);font-size:10.5px;padding:12px;outline:none;resize:vertical;line-height:1.7;letter-spacing:.2px;}
+.sync-import-area:focus{border-color:var(--gold);}
+.sync-import-area::placeholder{color:var(--text3);letter-spacing:0;font-size:12px;}
+.sync-merge-opt{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:var(--r);border:1px solid var(--border);background:var(--bg2);cursor:pointer;transition:border-color .15s;margin-bottom:8px;}
+.sync-merge-opt:hover{border-color:var(--gold);}
+.sync-merge-opt input[type=radio]{margin-top:2px;accent-color:var(--gold);flex-shrink:0;}
+.sync-merge-opt-title{font-size:12px;font-weight:600;color:var(--text);}
+.sync-merge-opt-desc{font-size:11px;color:var(--text3);margin-top:2px;line-height:1.5;}
+.sync-result{display:none;padding:12px;border-radius:var(--r);margin-top:12px;font-size:12px;line-height:1.6;white-space:pre-wrap;}
+.sync-result.ok{background:var(--greenDim);border:1px solid var(--green);color:var(--green);display:block;}
+.sync-result.err{background:var(--redDim);border:1px solid var(--red);color:var(--red);display:block;}
+.sync-btn-copy{width:100%;height:38px;border-radius:var(--r);border:1px solid var(--gold);background:var(--goldDim);color:var(--gold);font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;margin-bottom:6px;}
+.sync-btn-copy:hover{background:var(--gold);color:var(--bg);}
+.sync-step{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
+.sync-step:last-child{border:none;}
+.sync-step-num{width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--bg);font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.sync-step-txt{font-size:12px;color:var(--text2);line-height:1.6;}
+.sync-warning{background:var(--amberDim);border:1px solid var(--amber);border-radius:var(--r);padding:12px;font-size:11px;color:var(--text2);line-height:1.7;margin-top:14px;}
+.sync-warning-ttl{font-size:11px;font-weight:700;color:var(--amber);margin-bottom:5px;}
+
 </style>
 </head>
 <body>
@@ -295,6 +327,9 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:13
   <div class="tb-title" id="tb-title">Dashboard <span>Keuangan</span></div>
   <div class="tb-right">
     <div class="tb-date" id="tb-date"></div>
+    <button class="tb-btn" onclick="openModal('modal-sinkron')" style="color:var(--blue);border-color:var(--blueDim)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>Sinkron
+    </button>
     <button class="tb-btn" onclick="exportXLSX()">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Ekspor XLSX
     </button>
@@ -470,6 +505,9 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:13
       <div class="card">
         <div class="card-hdr"><span class="card-title">Manajemen Data</span></div>
         <div style="display:flex;flex-direction:column;gap:8px">
+          <button class="tb-btn" style="width:100%;height:38px;font-size:13px;color:var(--blue);border-color:var(--blueDim);background:#0d213044;display:flex;align-items:center;justify-content:center;gap:7px" onclick="openModal('modal-sinkron')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>Sinkron Antar Device
+          </button>
           <button class="btn-gold" style="width:100%;height:38px;font-size:13px" onclick="exportXLSX()">Ekspor Database XLSX</button>
           <button class="tb-btn" style="width:100%;height:38px;font-size:13px" onclick="backupJSON()">Backup Data (JSON)</button>
           <button class="tb-btn" style="width:100%;height:38px;font-size:13px" onclick="importJSON()">Import Data (JSON)</button>
@@ -1791,6 +1829,288 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape') document.querySelec
   </div>
 </div>
 </div>
+
+<!-- ══ MODAL SINKRON KODE ══ -->
+<div class="modal-overlay" id="modal-sinkron">
+<div class="modal-box" style="width:540px;max-width:96vw">
+  <div class="modal-title" style="display:flex;align-items:center;gap:10px;font-family:var(--serif)">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+    Sinkron Kode — Transfer Data Antar Device
+  </div>
+
+  <div class="sync-tabs">
+    <button class="sync-tab active" onclick="switchSyncTab('kirim',this)">📤 Kirim / Generate</button>
+    <button class="sync-tab" onclick="switchSyncTab('terima',this)">📥 Terima / Import</button>
+    <button class="sync-tab" onclick="switchSyncTab('cara',this)">❓ Cara Pakai</button>
+  </div>
+
+  <!-- PANEL KIRIM -->
+  <div class="sync-panel active" id="sync-panel-kirim">
+    <div style="margin-bottom:14px">
+      <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px">Pilih Data yang Disertakan</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;color:var(--text2);background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:4px 12px">
+          <input type="checkbox" id="sync-chk-trx" checked style="accent-color:var(--gold)"> Transaksi
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;color:var(--text2);background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:4px 12px">
+          <input type="checkbox" id="sync-chk-akun" checked style="accent-color:var(--gold)"> Akun & Dompet
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;color:var(--text2);background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:4px 12px">
+          <input type="checkbox" id="sync-chk-anggaran" checked style="accent-color:var(--gold)"> Anggaran
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;color:var(--text2);background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:4px 12px">
+          <input type="checkbox" id="sync-chk-tujuan" checked style="accent-color:var(--gold)"> Tujuan Keuangan
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;color:var(--text2);background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:4px 12px">
+          <input type="checkbox" id="sync-chk-investasi" checked style="accent-color:var(--gold)"> Investasi
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;color:var(--text2);background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:4px 12px">
+          <input type="checkbox" id="sync-chk-kategori" style="accent-color:var(--gold)"> Kategori
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;color:var(--text2);background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:4px 12px">
+          <input type="checkbox" id="sync-chk-setting" style="accent-color:var(--gold)"> Pengaturan
+        </label>
+      </div>
+    </div>
+    <button class="btn-gold" style="width:100%;margin-bottom:14px" onclick="generateSyncCode()">⚡ Generate Kode Sinkron</button>
+    <div id="sync-code-output" style="display:none">
+      <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px">Kode Sinkron — Salin semua teks di bawah</div>
+      <div class="sync-code-box" id="sync-code-display" onclick="this.focus();document.execCommand('selectAll')"></div>
+      <button class="sync-btn-copy" onclick="copySyncCode()">📋 Salin Kode ke Clipboard</button>
+      <div id="sync-copy-ok" style="display:none;font-size:11px;color:var(--green);text-align:center;margin-top:4px">✓ Berhasil disalin!</div>
+      <div id="sync-gen-summary" style="margin-top:10px"></div>
+    </div>
+  </div>
+
+  <!-- PANEL TERIMA -->
+  <div class="sync-panel" id="sync-panel-terima">
+    <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px">Tempel Kode Sinkron</div>
+    <textarea class="sync-import-area" id="sync-import-input" placeholder="Tempel kode sinkron yang diterima dari device lain...&#10;&#10;Kode dimulai dengan: MANTAPPS_FINANCE_SYNC_V1|..." oninput="syncInputChanged()"></textarea>
+    <div id="sync-parse-preview" style="display:none;margin-top:12px">
+      <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px">Preview Data Diterima</div>
+      <div id="sync-preview-rows"></div>
+    </div>
+    <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;margin:14px 0 8px">Mode Penggabungan</div>
+    <label class="sync-merge-opt"><input type="radio" name="sync-mode" value="merge" checked>
+      <div><div class="sync-merge-opt-title">🔀 Gabung (Merge) — Disarankan</div>
+      <div class="sync-merge-opt-desc">Data baru ditambahkan. Data dengan ID yang sama diperbarui. Data lokal yang tidak ada di kode tetap utuh.</div></div>
+    </label>
+    <label class="sync-merge-opt"><input type="radio" name="sync-mode" value="append">
+      <div><div class="sync-merge-opt-title">➕ Tambah Saja (Append)</div>
+      <div class="sync-merge-opt-desc">Hanya menambahkan data yang ID-nya belum ada secara lokal. Tidak menimpa data yang sudah ada.</div></div>
+    </label>
+    <label class="sync-merge-opt"><input type="radio" name="sync-mode" value="replace">
+      <div><div class="sync-merge-opt-title">🔄 Timpa Semua (Replace)</div>
+      <div class="sync-merge-opt-desc">Seluruh data lokal DIGANTI dengan data dari kode. Gunakan hanya jika yakin!</div></div>
+    </label>
+    <div id="sync-result" class="sync-result"></div>
+    <div class="modal-actions" style="margin-top:0">
+      <button class="btn-cancel" onclick="closeModal('modal-sinkron')">Tutup</button>
+      <button class="btn-gold" onclick="importSyncCode()">📥 Import & Sinkronkan</button>
+    </div>
+  </div>
+
+  <!-- PANEL CARA PAKAI -->
+  <div class="sync-panel" id="sync-panel-cara">
+    <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:12px">Panduan Transfer Data Antar Device</div>
+    <div class="sync-step"><div class="sync-step-num">1</div><div class="sync-step-txt"><b style="color:var(--text)">Device A — Pengirim:</b> Buka modal Sinkron → tab <b style="color:var(--gold)">Kirim</b>, centang data yang ingin dikirim, klik <b style="color:var(--gold)">Generate Kode</b>.</div></div>
+    <div class="sync-step"><div class="sync-step-num">2</div><div class="sync-step-txt"><b style="color:var(--text)">Salin kode</b> yang muncul dengan tombol Salin, atau klik teks kode → Ctrl+A → Ctrl+C.</div></div>
+    <div class="sync-step"><div class="sync-step-num">3</div><div class="sync-step-txt"><b style="color:var(--text)">Kirim kode</b> ke Device B via WhatsApp, email, Telegram, Google Keep, USB flash drive, atau media apa pun.</div></div>
+    <div class="sync-step"><div class="sync-step-num">4</div><div class="sync-step-txt"><b style="color:var(--text)">Device B — Penerima:</b> Buka modal Sinkron → tab <b style="color:var(--gold)">Terima</b>, tempel kode, pilih mode penggabungan.</div></div>
+    <div class="sync-step"><div class="sync-step-num">5</div><div class="sync-step-txt">Klik <b style="color:var(--gold)">Import & Sinkronkan</b>. Data otomatis masuk dan semua halaman diperbarui!</div></div>
+    <div class="sync-warning">
+      <div class="sync-warning-ttl">⚠ Catatan Penting</div>
+      • Kode Sinkron adalah <b style="color:var(--text2)">teks biasa (Base64)</b> — dapat dikirim lewat media apapun.<br>
+      • Kode <b style="color:var(--text2)">tidak terenkripsi</b> — hindari mengirim ke pihak yang tidak dipercaya.<br>
+      • Mode <b style="color:var(--text2)">Timpa</b> akan menghapus semua data lokal. Selalu backup dulu jika perlu!<br>
+      • Sinkron bersifat <b style="color:var(--text2)">satu arah</b> per sesi — dari pengirim ke penerima.
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal('modal-sinkron')">Tutup</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+//  SINKRON KODE — Finance Edition
+// ══════════════════════════════════════════════
+const SYNC_HDR = 'MANTAPPS_FINANCE_SYNC_V1';
+
+function switchSyncTab(name, btn) {
+  document.querySelectorAll('.sync-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.sync-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('sync-panel-' + name).classList.add('active');
+  const res = document.getElementById('sync-result');
+  if (res) { res.className = 'sync-result'; res.textContent = ''; }
+}
+
+function generateSyncCode() {
+  const sel = {
+    trx:       document.getElementById('sync-chk-trx').checked,
+    akun:      document.getElementById('sync-chk-akun').checked,
+    anggaran:  document.getElementById('sync-chk-anggaran').checked,
+    tujuan:    document.getElementById('sync-chk-tujuan').checked,
+    investasi: document.getElementById('sync-chk-investasi').checked,
+    kategori:  document.getElementById('sync-chk-kategori').checked,
+    setting:   document.getElementById('sync-chk-setting').checked,
+  };
+  const payload = { v: 1, ts: Date.now(), by: userNama, data: {} };
+  if (sel.trx)       payload.data.trx       = db.trx;
+  if (sel.akun)      payload.data.akun      = db.akun;
+  if (sel.anggaran)  payload.data.anggaran  = db.anggaran;
+  if (sel.tujuan)    payload.data.tujuan    = db.tujuan;
+  if (sel.investasi) payload.data.investasi = db.investasi;
+  if (sel.kategori)  payload.data.kategori  = db.kategori;
+  if (sel.setting)   payload.data.setting   = db.setting;
+  // always include counters snapshot
+  payload.data.counters = db.counters;
+
+  const json  = JSON.stringify(payload);
+  const b64   = btoa(unescape(encodeURIComponent(json)));
+  const code  = SYNC_HDR + '|' + b64;
+
+  document.getElementById('sync-code-output').style.display = 'block';
+  document.getElementById('sync-code-display').textContent = code;
+  document.getElementById('sync-copy-ok').style.display = 'none';
+
+  const parts = [];
+  if (sel.trx)       parts.push(`${db.trx.length} Transaksi`);
+  if (sel.akun)      parts.push(`${db.akun.length} Akun`);
+  if (sel.anggaran)  parts.push(`${db.anggaran.length} Anggaran`);
+  if (sel.tujuan)    parts.push(`${db.tujuan.length} Tujuan`);
+  if (sel.investasi) parts.push(`${db.investasi.length} Investasi`);
+  if (sel.kategori)  parts.push('Kategori');
+  if (sel.setting)   parts.push('Pengaturan');
+
+  const kb = (b64.length / 1024).toFixed(1);
+  document.getElementById('sync-gen-summary').innerHTML = `
+    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">${parts.map(p => `<span class="sync-chip">${p}</span>`).join('')}</div>
+    <div style="font-size:11px;color:var(--text3)">Ukuran kode: <span style="color:var(--text2);font-family:var(--mono)">${kb} KB</span> &nbsp;·&nbsp; Dibuat: <span style="color:var(--text2);font-family:var(--mono)">${new Date().toLocaleString('id-ID')}</span></div>`;
+  toast('Kode sinkron berhasil di-generate!');
+}
+
+function copySyncCode() {
+  const code = document.getElementById('sync-code-display').textContent;
+  if (!code) return;
+  const show = () => {
+    document.getElementById('sync-copy-ok').style.display = 'block';
+    setTimeout(() => { document.getElementById('sync-copy-ok').style.display = 'none'; }, 2600);
+    toast('Kode berhasil disalin ke clipboard!');
+  };
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(code).then(show).catch(() => fallbackCopy(code, show));
+  } else { fallbackCopy(code, show); }
+}
+function fallbackCopy(text, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
+  document.body.appendChild(ta); ta.select();
+  document.execCommand('copy'); document.body.removeChild(ta);
+  cb();
+}
+
+function parseSyncCode(raw) {
+  if (!raw.startsWith(SYNC_HDR + '|')) throw new Error('Bukan kode Sinkron Finance yang valid.');
+  const b64  = raw.slice(SYNC_HDR.length + 1);
+  const json = decodeURIComponent(escape(atob(b64)));
+  const p    = JSON.parse(json);
+  if (!p || !p.data) throw new Error('Format kode tidak dikenali.');
+  return p;
+}
+
+function syncInputChanged() {
+  const raw = (document.getElementById('sync-import-input').value || '').trim();
+  const prevEl = document.getElementById('sync-parse-preview');
+  const res = document.getElementById('sync-result');
+  res.className = 'sync-result'; res.textContent = '';
+  if (!raw || !raw.startsWith(SYNC_HDR + '|')) { prevEl.style.display = 'none'; return; }
+  try {
+    const p = parseSyncCode(raw);
+    const d = p.data;
+    const rows = [];
+    if (d.trx)       rows.push({ icon: '🧾', label: 'Transaksi',       count: d.trx.length });
+    if (d.akun)      rows.push({ icon: '💳', label: 'Akun & Dompet',   count: d.akun.length });
+    if (d.anggaran)  rows.push({ icon: '📊', label: 'Anggaran',        count: d.anggaran.length });
+    if (d.tujuan)    rows.push({ icon: '🎯', label: 'Tujuan Keuangan', count: d.tujuan.length });
+    if (d.investasi) rows.push({ icon: '📈', label: 'Investasi',       count: d.investasi.length });
+    if (d.kategori)  rows.push({ icon: '🏷️', label: 'Kategori',        count: 1 });
+    if (d.setting)   rows.push({ icon: '⚙️', label: 'Pengaturan',      count: 1 });
+    prevEl.style.display = 'block';
+    document.getElementById('sync-preview-rows').innerHTML = `
+      <div style="font-size:11px;color:var(--text3);margin-bottom:10px">
+        Oleh: <span style="color:var(--text2)">${p.by || '—'}</span> &nbsp;·&nbsp;
+        Waktu: <span style="color:var(--text2)">${p.ts ? new Date(p.ts).toLocaleString('id-ID') : '—'}</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        ${rows.map(r => `<div style="background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:6px 12px;font-size:12px">
+          ${r.icon} <b style="color:var(--text)">${r.count}</b> <span style="color:var(--text2)">${r.label}</span></div>`).join('')}
+      </div>`;
+  } catch (e) { prevEl.style.display = 'none'; }
+}
+
+function importSyncCode() {
+  const raw  = (document.getElementById('sync-import-input').value || '').trim();
+  const mode = document.querySelector('input[name="sync-mode"]:checked').value;
+  const res  = document.getElementById('sync-result');
+
+  if (!raw) { showSyncResult('err', 'Kode sinkron kosong. Tempel kode terlebih dahulu.'); return; }
+  let parsed;
+  try { parsed = parseSyncCode(raw); }
+  catch (e) { showSyncResult('err', 'Kode tidak valid atau rusak:\n' + e.message); return; }
+
+  const d = parsed.data;
+  const log = [];
+
+  function mergeArr(local, incoming, key) {
+    if (!incoming) return 0;
+    if (mode === 'replace') { db[key] = incoming; return incoming.length; }
+    let n = 0;
+    incoming.forEach(item => {
+      const idx = db[key].findIndex(x => x.id === item.id);
+      if (mode === 'append') { if (idx < 0) { db[key].push(item); n++; } }
+      else { if (idx >= 0) { db[key][idx] = item; n++; } else { db[key].push(item); n++; } }
+    });
+    return n;
+  }
+
+  if (mode === 'replace' && !confirm('Mode TIMPA akan mengganti semua data lokal. Yakin lanjutkan?')) return;
+
+  if (d.trx)       { const n = mergeArr(db.trx,       d.trx,       'trx');       log.push(`Transaksi: ${n} diproses`); }
+  if (d.akun)      { const n = mergeArr(db.akun,      d.akun,      'akun');      log.push(`Akun: ${n} diproses`); }
+  if (d.anggaran)  { const n = mergeArr(db.anggaran,  d.anggaran,  'anggaran');  log.push(`Anggaran: ${n} diproses`); }
+  if (d.tujuan)    { const n = mergeArr(db.tujuan,    d.tujuan,    'tujuan');    log.push(`Tujuan: ${n} diproses`); }
+  if (d.investasi) { const n = mergeArr(db.investasi, d.investasi, 'investasi'); log.push(`Investasi: ${n} diproses`); }
+  if (d.kategori)  { db.kategori = d.kategori; log.push('Kategori diperbarui'); }
+  if (d.setting)   { db.setting  = { ...db.setting, ...d.setting }; log.push('Pengaturan dimerge'); }
+  if (d.counters)  {
+    Object.keys(d.counters).forEach(k => {
+      if (d.counters[k] > (db.counters[k] || 0)) db.counters[k] = d.counters[k];
+    });
+  }
+
+  saveDB();
+  // Refresh all views
+  renderDashboard();
+  populateTrxFilters(); renderTrx();
+  renderAkun(); renderAnggaran();
+  renderTujuan(); renderInvestasi();
+  renderLaporan(); renderPengaturan();
+
+  showSyncResult('ok', '✅ Sinkron berhasil!\n' + log.join(' · '));
+  toast('Data berhasil disinkronkan!');
+  document.getElementById('sync-import-input').value = '';
+  document.getElementById('sync-parse-preview').style.display = 'none';
+}
+
+function showSyncResult(type, msg) {
+  const res = document.getElementById('sync-result');
+  res.className = 'sync-result ' + type;
+  res.textContent = msg;
+}
+</script>
 
 </body>
 </html>
